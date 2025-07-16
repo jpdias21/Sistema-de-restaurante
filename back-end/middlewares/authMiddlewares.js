@@ -1,20 +1,20 @@
 require('dotenv').config()
 const JWT = require('jsonwebtoken')
-const SECRET = process.env.SECRET
+const SECRET = process.env.JWT_SECRET
 
 
 module.exports = function (request, response, next){
-    const authHeader = request.header.authorizathio 
+    const authHeader = request.headers.authorization
 
     if(!authHeader){
-        response.status(201).json({mensagem: 'deu erro no header, nao tem nunhum'})
+       return response.status(401).json({mensagem: 'Token ao enviado'})
     }
 
-    const token = authHeader.split('')[1]
+    const token = authHeader.split(' ')[1]
 
     JWT.verify(token, SECRET ,(error, decode) =>{
-        if(! error){
-            response.status(201).json({mensagem : 'Token invalido ou inspirado'})
+        if(error){
+           return response.status(401).json({mensagem : 'Token invalido ou inspirado'})
         }
 
         request.usuario= decode

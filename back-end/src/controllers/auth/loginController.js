@@ -23,7 +23,7 @@ exports.LoginController = async (request, response) => {
             } 
 
             const token = jwt.sign({
-             name: usuario.name, surname: usuario.surname, email : usuario.email, 
+             id : usuario.id , name: usuario.name, surname: usuario.surname, email : usuario.email, 
             }, secret,
             {expiresIn : 3600}
         )
