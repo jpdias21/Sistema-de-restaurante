@@ -1,7 +1,7 @@
 const db = require('../../../models/')
 const Restaurant = db.Restaurant
 
-exports.updateMenu= async (request, response) => {
+exports.updateRestaurant= async (request, response) => {
     
     try {
         const {id, ...dados} = request.body

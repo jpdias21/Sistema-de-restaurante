@@ -1,5 +1,4 @@
 
-
 module.exports = (sequelize, DataTypes) => {
     const Menu = sequelize.define('Menu', {
         name : DataTypes.STRING,
@@ -11,5 +10,11 @@ module.exports = (sequelize, DataTypes) => {
         tableName : 'menu', 
         timestamps : false
     })
+    Menu.associate = (models) => {
+    Menu.belongsTo(models.Restaurant, {
+            foreignKey : 'restaurant_id',
+            as : 'restaurant'
+        })
+    }
     return Menu
 }

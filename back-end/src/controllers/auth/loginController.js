@@ -25,7 +25,7 @@ exports.LoginController = async (request, response) => {
             const token = jwt.sign({
              id : usuario.id , name: usuario.name, surname: usuario.surname, email : usuario.email, 
             }, secret,
-            {expiresIn : 3600}
+            {expiresIn : 86400}
         )
 
         return response.status(200).json({mensagem : 'login feito com sucesso', token})

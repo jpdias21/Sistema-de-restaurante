@@ -16,5 +16,19 @@ module.exports = (sequelize, DataTypes) => {
         tableName: 'restaurant',
         timestamps: false
     })
+
+    Restaurant.associate = (models) => {
+        Restaurant.belongsTo(models.User), {
+            foreignKey : 'user_id',
+            as : 'user_profile'
+        }
+    }
+
+    Restaurant.associate = (models) => {
+        Restaurant.hasMany(models.Menu), {
+            foreignKey : 'restarant_id',
+            as : 'menu' 
+        }
+    }
     return Restaurant
 }
