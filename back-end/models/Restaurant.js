@@ -8,6 +8,7 @@ module.exports = (sequelize, DataTypes) => {
         cep : DataTypes.STRING,
         address : DataTypes.STRING,
         number_address : DataTypes.STRING,
+        neighborhood: DataTypes.STRING,
         user_id : {
             type : DataTypes.INTEGER,
             field: 'user_id'

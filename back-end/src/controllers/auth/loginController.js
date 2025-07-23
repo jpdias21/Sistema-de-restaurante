@@ -14,7 +14,7 @@ exports.LoginController = async (request, response) => {
             where : {email}
         })
         if(! usuario){
-             return response.status(401).json({mensage : 'Usuario nao encontrado'})   
+             return response.status(401).json({mensagem : 'Usuario nao encontrado, email errado'})   
             }
         
             const senhaCorreta = await bcrypt.compare(password, usuario.password)

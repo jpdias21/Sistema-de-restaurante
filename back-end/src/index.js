@@ -10,7 +10,7 @@ app.use(cors({
 }))
 app.use(express.json())
 
-const authMiddleware = require('../middlewares/authMiddlewares')
+const authMiddleware= require('../middlewares/authMiddlewares')
 const {CreateAccount} = require ('./controllers/auth/createAccountController')
 const {LoginController} = require('./controllers/auth/loginController')
 
