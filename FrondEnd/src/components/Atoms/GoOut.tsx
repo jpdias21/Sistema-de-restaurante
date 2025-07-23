@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom'
+import SidebarMenu from './SideBar'
 function GoOut() {
     const navigate = useNavigate()
     const goOutAcount = () => {
@@ -10,7 +11,11 @@ function GoOut() {
         navigate('/Login')
     }
   return (
+    <>
+    <SidebarMenu/>
+    <br /><br />
     <button onClick={goOutAcount}>Sair da conta</button>
+    </>
   )
 }
 

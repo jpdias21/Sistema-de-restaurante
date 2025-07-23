@@ -32,7 +32,7 @@ app.post('/login', LoginController)
 ///restaurant
 app.post('/createRestaurant', createRestaurant)
 app.post('/deleteRestaurant', deleteRestaurant)
-app.post('/updateRestaurant', updateRestaurant )
+app.put('/updateRestaurant', authMiddleware,updateRestaurant )
 app.get('/readRestaurant', authMiddleware, readRestaurant)
 
 ///menu

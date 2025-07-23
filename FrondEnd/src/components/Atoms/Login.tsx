@@ -24,7 +24,7 @@ function Login() {
            localStorage.setItem('token', token)
 
             console.log('login realizado com sucesse')
-            navigate('/readRestaurant')
+            navigate('/Dashboard')
         } catch (error : any) {
             if(error.response && error.response.status === 401){
                 SetErrorMessage(error.response.data.mensagem)

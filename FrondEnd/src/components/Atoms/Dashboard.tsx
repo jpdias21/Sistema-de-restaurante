@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
+import SidebarMenu from './SideBar'
 import { jwtDecode } from 'jwt-decode'
-import GoOut from './GoOut'
 interface UserToken {
   name : string, 
   surname : string,
@@ -8,6 +8,7 @@ interface UserToken {
 }
 
 function Dashboard() {
+  
   const [dados, setDados] = useState<UserToken | null>(null)
 
   useEffect(() => {
@@ -20,9 +21,9 @@ function Dashboard() {
 
   return (
     <>
+    <SidebarMenu/>
       <h1>Ola senhor {dados?.name} {dados?.surname}</h1>
       <h2>O seu email e {dados?.email}</h2>
-      <GoOut/>
     </>
   )
 }

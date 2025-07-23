@@ -6,7 +6,7 @@ exports.readRestaurant= async (request, response) => {
         const userId = request.userId
         const read = await Restaurant.findOne({
             where : {user_id :userId},
-            attributes : ['name', 'category', 'description', 'cep', 'address', 'number_address']
+            attributes : ['id','name', 'category', 'description', 'cep', 'address', 'number_address', 'neighborhood']
         })
 
         response.status(200).json({mensagem : 'Restaurante lido com sucesso', read})
