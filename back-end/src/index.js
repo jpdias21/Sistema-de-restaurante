@@ -31,8 +31,8 @@ app.post('/login', LoginController)
 
 ///restaurant
 app.post('/createRestaurant', createRestaurant)
-app.post('/deleteRestaurant', deleteRestaurant)
-app.put('/updateRestaurant', authMiddleware,updateRestaurant )
+app.delete('/deleteRestaurant/',authMiddleware, deleteRestaurant)
+app.put('/updateRestaurant/:id', authMiddleware,updateRestaurant )
 app.get('/readRestaurant', authMiddleware, readRestaurant)
 
 ///menu

@@ -1,4 +1,4 @@
-import React from 'react'
+
 import SidebarMenu from '../SideBar'
 import { useNavigate } from 'react-router-dom'
 function Restaurant() {
@@ -13,9 +13,20 @@ function Restaurant() {
     const mudarDadosRestaurant = () => {
         navigate('/UpdateRestaurant')
     }
+
+    const cadastrarRestaurante = () => {
+      navigate('/createRestaurant')
+    }
+    const apagarRestaurant = () => {
+      navigate('/DeleteRestaurant')
+    }
   return (
     <>
     <SidebarMenu/>
+    <br />
+    <br />
+    <button onClick={cadastrarRestaurante}>Cadastrar o restaurante</button>
+    <br />
     <br />
     <button onClick={dadosRestaurante}>Ver dados do restaurante</button>
     <br />
@@ -23,7 +34,7 @@ function Restaurant() {
     <button onClick={mudarDadosRestaurant}>Mudar dados do restaurante</button>
     <br />
     <br />
-    <button>Apagar restaurante</button>
+    <button onClick={apagarRestaurant}>Apagar restaurante</button>
     </>
 
   )

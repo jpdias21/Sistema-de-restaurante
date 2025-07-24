@@ -15,14 +15,14 @@ module.exports = (sequelize, DataTypes) => {
         }
     }, {
         tableName: 'restaurant',
-        timestamps: false
+        timestamps: false, underscored: true 
     })
 
     Restaurant.associate = (models) => {
-        Restaurant.belongsTo(models.User), {
+        Restaurant.belongsTo(models.User, {
             foreignKey : 'user_id',
             as : 'user_profile'
-        }
+        })
     }
 
     Restaurant.associate = (models) => {

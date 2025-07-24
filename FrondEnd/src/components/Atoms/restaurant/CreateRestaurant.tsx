@@ -59,7 +59,7 @@ function CreateRestaurant() {
         try {
             const response = axios.post('http://localhost:3000/createRestaurant', {name,category,description,cep,address,number_address,neighborhood,user_id : dadosUser.id})
             console.log(response)
-            navigate('/Dashboard')
+            navigate('/readRestaurant')
     
         } catch (error) {
             SetLoading(false)

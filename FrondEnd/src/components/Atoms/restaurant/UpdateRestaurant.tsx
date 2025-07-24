@@ -20,6 +20,8 @@ function UpdateRestaurant() {
     const [address, SetAddress ] = useState<string>('')
     const [number_address , SetNumber_address ] = useState<string>('')
     const [neighborhood, SetNeighborhood ] = useState<string>('')
+    const [description, SetDescription ] = useState<string>('')
+    const [menssage, SetMensagem] = useState<boolean | null>(null)
     
     const [dados, SetDados] = useState<UserToken | null>(null)
     const [loading, SetLoading] = useState<boolean | null>(null)
@@ -45,6 +47,7 @@ function UpdateRestaurant() {
             SetAddress(restaurantData.address || '')
             SetNumber_address(restaurantData.number_address || '')
             SetNeighborhood(restaurantData.neighborhood || '')
+            SetDescription(restaurantData.description || '')
             
             SetLoading(false)
              } catch (error) {
@@ -55,17 +58,29 @@ function UpdateRestaurant() {
         aboutToken()
     }, [])
 /////////
-    const uptadeRestaurant = async (event :any,) => {
+    const uptadeRestaurant = async (event :any) => {
         event.preventDefault()
         SetLoading(true)
+        const id = dados?.id 
 
         try {
-            const response = await axios.put('http://localhost:3000/updateRestaurant', {
-                id: dados?.id ,name, category, cep, neighborhood, address, number_address
-            })
+            const token = localStorage.getItem('token')
+            const response = await axios.put(`http://localhost:3000/updateRestaurant/${id}`, {
+                name, category,description, cep, neighborhood, address, number_address
+            },{
+                headers : {
+                    Authorization : `Bearer ${token}`
+                }
+            } )
+            console.log('restaurante atualizado com sucesso', response.data)
             SetLoading(false)
-        } catch (error) {
-            
+            if(response.status === 200){
+                SetMensagem(response.data.mensagem)
+            }
+        } catch (error :any) {
+            if(error.response && error.response.mensagem === 500){
+                SetMensagem(error.response.data.mensagem)
+            }
         }
 
     }
@@ -75,13 +90,18 @@ function UpdateRestaurant() {
     <p>Atuliaze os dados do seu restaurante</p>
     {loading ? <PulseLoader color="#1732e0ff" size={25} /> : 
     
-    <form onClick={uptadeRestaurant}>
+    <form>
         <br />
         <label>Nome do restaurante : </label>
         <input type="text" value={name} onChange={(event) => SetName(event.target.value)} />
         <br />
         <label>Categoria : </label>
         <input type="text" value={category} onChange={(event) => SetCategory(event.target.value)} />
+        <br />
+        <label>Descricao: </label>
+        <textarea
+            value={description} rows={5} cols={35} maxLength={200} onChange={(event) => SetDescription(event.target.value)}
+            />
         <br /><label>Cep : </label>
         <input type="text" value={cep} onChange={(event) => SetCep(event.target.value)} />
         <br /><label>Bairro : </label>
@@ -92,8 +112,10 @@ function UpdateRestaurant() {
         <input type="text" value={number_address} onChange={(event) => SetNumber_address(event.target.value)} />
         <br />
         <br />
-        <button type='submit'>Mudar os dados</button>
+        <button onClick={uptadeRestaurant}>Mudar os dados</button>
     </form>}
+    <br />
+    {menssage && <p style={{color :'red'}}>{menssage}</p>}
     </>
   )
 }
