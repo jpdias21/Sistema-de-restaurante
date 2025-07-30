@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { PulseLoader } from 'react-spinners'
+import SidebarMenu from '../SideBar'
 import axios from 'axios'
 import { jwtDecode } from 'jwt-decode'
 import { useNavigate } from 'react-router-dom'
@@ -22,6 +23,7 @@ function CreateRestaurant() {
     const [dadosUser, SetDadosUser]= useState<UserToken | null>(null)
     
     const [loading, SetLoading] = useState<boolean | null>(null)
+    const [mensagemServidor, SetMensagemServidor] = useState<boolean | null>(null)
 
     const navigate = useNavigate()
     useEffect(() => {
@@ -50,26 +52,34 @@ function CreateRestaurant() {
       }, [cep])
 
 
-    const createRegitreRestaurant =(event :any) => {
+    const createRegitreRestaurant = async (event :any) => {
         event.preventDefault()
         SetLoading(true)
         if (!dadosUser?.id) {
         console.error("User ID não carregado ainda")
         return}
         try {
-            const response = axios.post('http://localhost:3000/createRestaurant', {name,category,description,cep,address,number_address,neighborhood,user_id : dadosUser.id})
+            const response = await axios.post('http://localhost:3000/createRestaurant', {name,category,description,cep,address,number_address,neighborhood,user_id : dadosUser.id})
             console.log(response)
-            navigate('/readRestaurant')
+
+            const restaurantId = response.data.create.id
+            localStorage.setItem('restaurantId', restaurantId)
+            console.log('Verificação:', localStorage.getItem('restaurantId'))
+
+            navigate('/CreateMenu')
     
-        } catch (error) {
-            SetLoading(false)
-            console.error(error)
+        } catch (error : any) {
+        if(error.response && error.response.status.mensagem === 500){
+          SetMensagemServidor(error.response.status.mensagem)
         }
+        SetLoading(false)
+      }
 
     }
   return (
     
     <>
+    <SidebarMenu/>
         <form onSubmit={createRegitreRestaurant} >
             <h4>{dadosUser?.name} {dadosUser?.surname} adicione dados do restaurante</h4>
             <br />
@@ -96,6 +106,7 @@ function CreateRestaurant() {
         </form>
         <br />
         {loading ? <PulseLoader color="#1732e0ff" size={25}/> : ''}
+        {mensagemServidor && <p>{mensagemServidor}</p>}
     </>
   )
 }

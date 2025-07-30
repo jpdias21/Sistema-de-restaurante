@@ -1,4 +1,5 @@
 import React from 'react'
+import SidebarMenu from '../SideBar'
 import { useNavigate } from 'react-router-dom'
 function Menu() {
 
@@ -9,6 +10,7 @@ function Menu() {
     }
   return (
     <>
+    <SidebarMenu/>
     <br />
     <button onClick={createMenu}>Cadastrar menu do restaurante</button>
     <br />

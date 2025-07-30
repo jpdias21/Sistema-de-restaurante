@@ -13,7 +13,7 @@ exports.createRestaurant = async (request, response) => {
             name,category,description,cep,address,number_address,neighborhood,user_id
         })
 
-        response.status(200).json({mensagem : 'dados do restaurante criado com sucesso', create})
+        response.status(200).json({mensagem : 'dados do restaurante criado com sucesso', id: create.id, create})
 
     } catch (error) {
         response.status(500).json({mensagem : 'erro ao criar', error})
