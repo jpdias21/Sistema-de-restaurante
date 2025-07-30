@@ -15,6 +15,20 @@ function SidebarMenu() {
     setIsOpen(false); // fecha o menu após clique
   };
 
+  const Dashboard = () => {
+    navigate('/Dashboard')
+    setIsOpen(false);
+  }
+
+  const Restaurant = () => {
+    navigate('/Restaurant')
+    setIsOpen(false);
+  }
+
+    const GoOut = () => {
+    navigate('/GoOut')
+    setIsOpen(false);
+  }
   return (
     <div>
       {/* Ícone do menu (hambúrguer) */}
@@ -32,9 +46,10 @@ function SidebarMenu() {
           padding: '1rem',
           zIndex: 1000
         }}>
-          <p onClick={() => handleNavigation('/Dashboard')}>🏠 Home</p>
-          <p onClick={() => handleNavigation('/restaurant')}>🍽 Restaurantes</p>
-          <p onClick={() => handleNavigation('/GoOut')}>🚪 Sair</p>
+          <p onClick={Dashboard}>🏠 Home</p>
+          <p onClick={Restaurant}>🍽 Restaurantes</p>
+          <p onClick={() => handleNavigation('/Menu')}>📋 Cardapio</p>
+          <p onClick={GoOut}>🚪 Sair</p>
         </div>
       )}
     </div>
