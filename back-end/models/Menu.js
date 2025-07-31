@@ -8,13 +8,14 @@ module.exports = (sequelize, DataTypes) => {
         restaurant_id : DataTypes.INTEGER 
     }, {
         tableName : 'menu', 
-        timestamps : false
+        timestamps : false, 
+        
+        paranoid: false,
+        attributes: {
+            exclude: ['RestaurantId'] 
+        }
+        
     })
-    Menu.associate = (models) => {
-    Menu.belongsTo(models.Restaurant, {
-            foreignKey : 'restaurant_id',
-            as : 'restaurant'
-        })
-    }
+    
     return Menu
 }

@@ -39,8 +39,7 @@ function CreateMenu() {
     novos[index].valor = valor
     SetCampo(novos)
   }
-  // No console do browser (F12):
-console.log(localStorage.getItem('restaurantId'))
+
 
   ///Mandar
   const HandleSubmit = async (event : any) => {
@@ -58,11 +57,11 @@ console.log(localStorage.getItem('restaurantId'))
         }
         console.log(enviarDados)
         const response = await axios.post('http://localhost:3000/createMenu', enviarDados)
-        console.log('deu certo', response)
+        console.log('deu certo', response.data)
         SetLoading(false)
       } catch (error : any) {
-        if(error.response && error.response.status.mensagem === 500){
-          SetMensagemServidor(error.response.status.mensagem)
+        if(error.response && error.response.status === 500){
+          SetMensagemServidor(error.response.data.mensagem)
         }
         SetLoading(false)
       }
@@ -70,6 +69,7 @@ console.log(localStorage.getItem('restaurantId'))
 
   return (
    <>
+    
    <SidebarMenu/>
    <div >
     <h3>Cadastre seu menu</h3>
@@ -103,6 +103,7 @@ console.log(localStorage.getItem('restaurantId'))
                   required
                 />
         <br />
+        {loading ? <PulseLoader color="#1732e0ff" size={30}/> : ''}
         <hr />
         </div>
        ))}
@@ -116,7 +117,6 @@ console.log(localStorage.getItem('restaurantId'))
    </div>
    <br />
   {mensagemServidor && <p style={{color:'red'}}>{mensagemServidor}</p> }
-  {loading ? <PulseLoader color="#1732e0ff" size={25}/> : ''}
    </>
   )
 }

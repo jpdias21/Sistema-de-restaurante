@@ -3,14 +3,10 @@ const Menu = db.Menu
 
 exports.readMenu= async (request, response) => {
     try {
-        const userId = request.userId
+        const {restaurant_id} = request.params
         const read = await Menu.findAll({
-            include : {
-                model : db.Restaurant ,
-                as : 'restaurant',
-                where : {'user_id' : userId},
-                attributes : []
-            },
+
+            where : {'restaurant_id' : restaurant_id},
             attributes : ['name', 'description', 'value', 'img_product']
         })
 

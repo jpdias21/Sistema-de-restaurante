@@ -8,13 +8,18 @@ function Menu() {
     const createMenu = () => {
         navigate('/CreateMenu')
     }
+
+    const verMenu = () => {
+        navigate('/MenuPdf')
+    }
   return (
     <>
     <SidebarMenu/>
     <br />
     <button onClick={createMenu}>Cadastrar menu do restaurante</button>
-    <br />
-    <br />
+    <br /><br />
+    <button onClick={verMenu}>Ver menu PDF</button>
+    <br /> <br />
     <button>Ver dados do menu</button>
     <br />
     <br />

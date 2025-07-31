@@ -37,9 +37,10 @@ app.get('/readRestaurant', authMiddleware, readRestaurant)
 
 ///menu
 app.post('/createMenu', createMenu)
+
 app.post('/deleteMenu', deleteMenu)
 app.post('/updateMenu', updateMenu)
-app.get('/readMenu', authMiddleware, readMenu)
+app.get('/readMenu/:restaurant_id', authMiddleware, readMenu)
 
 
 

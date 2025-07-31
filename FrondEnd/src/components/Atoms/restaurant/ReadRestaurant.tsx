@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { PulseLoader } from 'react-spinners'
-import { jwtDecode } from 'jwt-decode'
 import axios from 'axios'
 import SidebarMenu from '../SideBar'
 interface UserToken{

@@ -14,6 +14,7 @@ import DeleteRestaurant from '../components/Atoms/restaurant/DeleteRestaurant'
 
 //menu
 import Menu from '../components/Atoms/menu/Menu'
+import MenuPdf from '../components/Atoms/menu/MenuPdf'
 import CreateMenu from '../components/Atoms/menu/CreateMenu'
 
 
@@ -35,6 +36,7 @@ function App() {
 
           <Route path='/Menu' element={<Menu/>}/>
           <Route path='/CreateMenu' element={<CreateMenu/>}/>
+          <Route path='/MenuPdf' element={<MenuPdf/>}/>
 
 
         
@@ -52,6 +54,7 @@ function App() {
 
           <Route path='/Menu' element={<ProtectedRoute><Menu/></ProtectedRoute>}/>
           <Route path='/CreateMenu' element={<ProtectedRoute><CreateMenu/></ProtectedRoute>}/>
+          <Route path='/MenuPdf' element={<ProtectedRoute><MenuPdf/></ProtectedRoute>}/>
 
       </Routes>
     </BrowserRouter>
