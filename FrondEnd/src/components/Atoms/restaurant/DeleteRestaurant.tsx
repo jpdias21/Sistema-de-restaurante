@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import SidebarMenu from '../SideBar'
+import SidebarMenu from '../Struture/SideBar'
 import { PulseLoader } from 'react-spinners'
 
 function DeleteRestaurant() {

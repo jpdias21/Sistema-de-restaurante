@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { PulseLoader } from 'react-spinners'
-import SidebarMenu from '../SideBar'
+import SidebarMenu from '../Struture/SideBar'
 import axios from 'axios'
 import { jwtDecode } from 'jwt-decode'
 import { useNavigate } from 'react-router-dom'

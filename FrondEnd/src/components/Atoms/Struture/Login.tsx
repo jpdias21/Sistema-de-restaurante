@@ -1,3 +1,5 @@
+import { Button, Input } from '@chakra-ui/react'
+
 import { PulseLoader } from 'react-spinners'
 import  { useState } from 'react'
 import axios from 'axios'
@@ -40,14 +42,14 @@ function Login() {
       <form onSubmit={acessLogin}>
         <h2>Realize seu login</h2>
          <label>Email : </label>
-            <input type="email" value={email} placeholder='Digite seu email' onChange={(event) => SetEmail(event.target.value) } required  />
+            <Input type="email" value={email} placeholder='Digite seu email' onChange={(event) => SetEmail(event.target.value) } required  />
             <br />
              <label>Senha :  </label>
-            <input type={showPass ? 'text' : 'password'} value={password} placeholder='Digite uma senha' onChange={(event) => SetPassWord(event.target.value) } required min={8} />
-             <button type='button' onClick={showPassWord}>Ver senha</button>
+            <Input type={showPass ? 'text' : 'password'} value={password} placeholder='Digite uma senha' onChange={(event) => SetPassWord(event.target.value) } required min={8} />
+             <Button colorScheme='green' type='button' onClick={showPassWord}>Ver senha</Button>
             <br />
             <br />
-            <button type='submit'>Login</button>
+            <Button colorScheme='blue' type='submit'>Login</Button>
 
     </form>
    {loading ? <PulseLoader color="#1732e0ff" size={25} /> : ' '}

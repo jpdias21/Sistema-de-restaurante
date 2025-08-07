@@ -1,7 +1,7 @@
 import  { useEffect, useState } from 'react'
 import { PulseLoader } from 'react-spinners'
 import axios from 'axios'
-import SidebarMenu from '../SideBar'
+import SidebarMenu from '../Struture/SideBar'
 
 interface UserToken{
     id: number, 

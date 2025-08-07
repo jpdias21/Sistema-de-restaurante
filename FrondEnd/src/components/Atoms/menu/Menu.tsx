@@ -1,5 +1,5 @@
 import React from 'react'
-import SidebarMenu from '../SideBar'
+import SidebarMenu from '../Struture/SideBar'
 import { useNavigate } from 'react-router-dom'
 function Menu() {
 

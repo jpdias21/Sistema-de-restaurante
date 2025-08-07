@@ -1,10 +1,10 @@
-import './App.scss'
+import './App.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
-import CreateAccount from '../components/Atoms/CreateAccount'
-import Login from '../components/Atoms/Login'
-import Dashboard from '../components/Atoms/Dashboard'
-import ProtectedRoute from '../components/Atoms/ProtectedRoute'
+import CreateAccount from '../components/Atoms/Struture/CreateAccount'
+import Login from '../components/Atoms/Struture/Login'
+import Dashboard from '../components/Atoms/Struture/Dashboard'
+import ProtectedRoute from '../components/Atoms/Struture/ProtectedRoute'
 /// restaurant
 import Restaurant from '../components/Atoms/restaurant/Restaurant'
 import CreateRestaurant from '../components/Atoms/restaurant/CreateRestaurant'
@@ -19,8 +19,8 @@ import CreateMenu from '../components/Atoms/menu/CreateMenu'
 
 
 //About
-import GoOut from '../components/Atoms/GoOut'
-import Home from '../components/Atoms/Home'
+import GoOut from '../components/Atoms/Struture/GoOut'
+import Home from '../components/Atoms/Struture/Home'
 function App() {
   return (
     <>
