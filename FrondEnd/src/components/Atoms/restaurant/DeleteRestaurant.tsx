@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import axios from 'axios'
 import SidebarMenu from '../Struture/SideBar'
 import { PulseLoader } from 'react-spinners'
+import ButtonProps from '../Form/ButtonProps'
 
 function DeleteRestaurant() {
     const [loading, SetLoading] = useState<boolean | null>(null)
@@ -62,9 +63,16 @@ function DeleteRestaurant() {
     <SidebarMenu/>
         {loading ? <PulseLoader color="#1732e0ff" size={25} /> : <>
         <br />
-        <p style={{color : 'red'}}>Tem certeza que voce deseja apagar o seu restaurante</p>
+        <p>Tem certeza que voce deseja apagar o seu restaurante</p>
         <br />
-        <button onClick={deleteRestaurant}>Deletar restaurante</button>
+         <br />
+            <ButtonProps 
+              name = 'DELETAR RESTAURANTE'
+              color = 'red'
+              type='button'
+              onClick={() => deleteRestaurant}
+            
+            />
         <br />
         <br /></>}
         {mensagem && <h4 style={{color :'red'}}>{mensagem}</h4>}

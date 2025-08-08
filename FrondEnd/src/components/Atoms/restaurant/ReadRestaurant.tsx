@@ -1,3 +1,4 @@
+import { Card, CardHeader, CardBody,Heading,Stack,StackDivider,Box,Text } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { PulseLoader } from 'react-spinners'
 import axios from 'axios'
@@ -16,6 +17,7 @@ interface UserToken {
 function ReadRestaurant() {
   const [dados, SetDados] = useState<UserToken | null>(null)
   const [loading, SetLoading] = useState<boolean | null>(null)
+  const [errorMenssage, SetErrorMessage] = useState<boolean | null>(null)
   useEffect(() => {
     SetLoading(true)
     async function aboutToken() {
@@ -30,27 +32,92 @@ function ReadRestaurant() {
           })
           SetDados(response.data.read)
           SetLoading(false)
-        } catch (error) {
-
+        } catch (error : any) {
+            if(error.response && error.response.status === 401){
+                SetErrorMessage(error.response.data.mensagem)
+            }
+            SetLoading(false)
+            console.error(error)
         }
       }
     }
     aboutToken()
   }, [])
+  if (loading === true) {
+          return <PulseLoader color="#ff6b6b" />
+      }
   return (
     <>
       <SidebarMenu />
-      {loading ? <PulseLoader color="#1732e0ff" size={25} /> : <>
-        <h3>Dados do seu restaurante</h3>
-        <p>Nome: {dados?.name}</p>
-        <p>Categoria: {dados?.category}</p>
-        <p>Descricao do restaurante: {dados?.description}</p>
-        <p>Cep: {dados?.cep}</p>
-        <p>Bairro: {dados?.neighborhood}</p>
-        <p>Rua : {dados?.address}</p>
-        <p>Numero : {dados?.number_address}</p>
+      <br />
+      <br />
+      <Card>
+  <CardHeader>
+    <Heading size='md'>Dados do seu restaurante</Heading>
+  </CardHeader>
 
-      </>}
+  <CardBody>
+    <Stack divider={<StackDivider />} spacing='4'>
+      <Box>
+        <Heading size='xs' textTransform='uppercase'>
+          Nome
+        </Heading>
+        <Text pt='2' fontSize='sm'>
+           {dados?.name}
+        </Text>
+      </Box>
+      <Box>
+        <Heading size='xs' textTransform='uppercase'>
+          Categoria
+        </Heading>
+        <Text pt='2' fontSize='sm'>
+           {dados?.category}
+        </Text>
+      </Box>
+      <Box>
+        <Heading size='xs' textTransform='uppercase'>
+          Descricao do restaurante
+        </Heading>
+        <Text pt='2' fontSize='sm'>
+          {dados?.description}
+        </Text>
+      </Box>
+      <Box>
+        <Heading size='xs' textTransform='uppercase'>
+          Cep
+        </Heading>
+        <Text pt='2' fontSize='sm'>
+          {dados?.cep}
+        </Text>
+      </Box>
+      <Box>
+        <Heading size='xs' textTransform='uppercase'>
+          Bairro
+        </Heading>
+        <Text pt='2' fontSize='sm'>
+          {dados?.neighborhood}
+        </Text>
+      </Box>
+      <Box>
+        <Heading size='xs' textTransform='uppercase'>
+          Rua
+        </Heading>
+        <Text pt='2' fontSize='sm'>
+          {dados?.address}
+        </Text>
+      </Box>
+      <Box>
+        <Heading size='xs' textTransform='uppercase'>
+          Numero
+        </Heading>
+        <Text pt='2' fontSize='sm'>
+          {dados?.number_address}
+        </Text>
+      </Box>
+    </Stack>
+  </CardBody>
+</Card>
+{errorMenssage && <p style={{color :'red'}}>{errorMenssage}</p>}
     </>
   )
 }

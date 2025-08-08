@@ -34,7 +34,6 @@ function Login() {
             if(error.response && error.response.status === 401){
                 SetErrorMessage(error.response.data.mensagem)
             }
-            SetLoading(false)
             console.error(error)
             SetLoading(false)
         }

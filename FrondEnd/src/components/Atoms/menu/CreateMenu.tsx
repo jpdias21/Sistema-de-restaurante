@@ -1,8 +1,19 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+import ImputProps from '../Form/InputProps'
+import ButtonProps from '../Form/ButtonProps'
+import { Textarea } from '@chakra-ui/react'
 import { PulseLoader } from 'react-spinners'
 import { NumericFormat } from 'react-number-format'
 import SidebarMenu from '../Struture/SideBar'
 import axios from 'axios'
+
+import {
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  NumberIncrementStepper,
+  NumberDecrementStepper, FormControl, FormLabel
+} from '@chakra-ui/react'
 
 ///definir campo
 type Campo = {
@@ -17,7 +28,7 @@ function CreateMenu() {
   const [mensagemServidor, SetMensagemServidor] = useState<string | null>(null)
 
   ///adiciona campo
-  const adicionarCampo = (event: any) => {
+  const adicionarCampo = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
     SetCampo([...campo, { name: "", description: "", valor: 0 }])
   }
@@ -79,38 +90,60 @@ function CreateMenu() {
           <form onSubmit={HandleSubmit}>
             {campo.map((dados, index) => (
               <div key={index}>
-                <label>Nome do produto : </label>
-                <input type="text" value={dados.name} placeholder='Exeplo pizza de calabreza' onChange={(e) => handleChange(index, "name", e.target.value)} required />
-                <br /><br />
-
-                <label>Descricao do produto : </label>
+                <div>
+                  <br />
+                  <ImputProps
+                    label='Nome do produto '
+                    value={dados.name}
+                    onChange={event => handleChange(index, "name", event.target.value)}
+                    name={dados.name}
+                    placeholder='Exemplo pizza de calabreza'
+                    type='text'
+                    isRequired
+                  />
+                </div>
+                <div>
+                  <label >Descricao do produto :</label>
+                  <Textarea value={dados.description} placeholder='Descreva o seu produto' rows={5} cols={35} maxLength={200} onChange={(event) => handleChange(index, 'description', event.target.value)} required />
+                </div>
                 <br />
-                <textarea
-                  value={dados.description} rows={3} cols={25} maxLength={100} placeholder='Faça uma descricao do produto' onChange={(event) => handleChange(index, 'description', event.target.value)} required />
-                <br /><br />
+                <label>Valor : </label>
+              <ImputProps
+  label='Valor do produto'
+  value={dados.valor !== null && dados.valor !== undefined ? dados.valor.toString() : ''}
+  onChange={(event) => {
+    const inputValue = event.target.value;
+    const numericValue = inputValue === '' ? null : parseFloat(inputValue) || null;
+    handleValorChange(index, numericValue);
+  }}
+  name="valor"
+  placeholder="20.50"
+  type="text"
+  isRequired
+/>
 
-                <label>Valor do produto:</label>
-                <NumericFormat
-                  value={dados.valor || ''}
-                  onValueChange={(values) => handleValorChange(index, values.floatValue || null)}
-                  thousandSeparator="."
-                  decimalSeparator=","
-                  prefix="R$ "
-                  decimalScale={2}
-                  fixedDecimalScale
-                  allowNegative={false}
-                  placeholder="R$ 0,00"
-                  required
-                />
-                <br />
+
                 {loading ? <PulseLoader color="#1732e0ff" size={30} /> : ''}
-                <hr />
+                <hr style={{ color: 'red' }} />
               </div>
             ))}
             <br />
-            <button onClick={adicionarCampo}>Adicionar mais um produto</button>
+            <br />
+            <ButtonProps
+              name='Adicionar mais produto um produto'
+              color='green'
+              type='button'
+              onClick={adicionarCampo}
+
+            />
             <br /> <br />
-            <button type='submit'>Fazer o cadastro</button>
+            <ButtonProps
+              name='Fazer o cadastro'
+              color='blue'
+              type='submit'
+              onClick={() => undefined}
+
+            />
           </form>
         </div>
 

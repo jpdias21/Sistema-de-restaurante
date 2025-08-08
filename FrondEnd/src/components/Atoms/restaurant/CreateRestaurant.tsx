@@ -1,7 +1,7 @@
 import ImputProps from '../Form/InputProps'
 import ButtonProps from '../Form/ButtonProps'
 import { Textarea } from '@chakra-ui/react'
-
+import '../Form/form.css'
 import { useEffect, useState } from 'react'
 import { PulseLoader } from 'react-spinners'
 import SidebarMenu from '../Struture/SideBar'
@@ -89,7 +89,7 @@ function CreateRestaurant() {
     <SidebarMenu/>
       <h4>{dadosUser?.name} {dadosUser?.surname} adicione dados do restaurante</h4>
             <br />
-      <form onSubmit={createRegitreRestaurant}>
+      <form onSubmit={createRegitreRestaurant} className='form'>
         <div>
               <ImputProps
               label='Nome Restaurante'

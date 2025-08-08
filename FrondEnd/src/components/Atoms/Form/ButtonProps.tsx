@@ -3,7 +3,7 @@ import { Button} from '@chakra-ui/react'
 interface ButtonProps{
     name : string, 
     color : string, 
-    onClick : () => void  | undefined,
+    onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void ,
     type?: "submit" | "reset" | "button" | undefined
 }
 
