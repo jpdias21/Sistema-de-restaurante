@@ -1,5 +1,6 @@
-import { Button, Input } from '@chakra-ui/react'
-
+import ImputProps from '../Form/InputProps'
+import ButtonProps from '../Form/ButtonProps'
+import '../Form/form.css'
 import { PulseLoader } from 'react-spinners'
 import  { useState } from 'react'
 import axios from 'axios'
@@ -10,10 +11,12 @@ function Login() {
     const [showPass, setShowPass] = useState<boolean | null>(false)
     const [errorMenssage, SetErrorMessage] = useState<boolean | null>(null)
     const navigate = useNavigate()
+    
+    
     const showPassWord = () => {
       setShowPass(!showPass)  
     } 
-    const [loading, SetLoading] = useState<boolean | null>(null)
+    const [loading, SetLoading] = useState<boolean | null>(false)
 
     const acessLogin = async ( event : any) => {
         event.preventDefault()
@@ -37,23 +40,56 @@ function Login() {
         }
     }
 
+    if (loading === true) {
+        return <PulseLoader color="#ff6b6b" />
+    }
+
   return (
     <>
-      <form onSubmit={acessLogin}>
-        <h2>Realize seu login</h2>
-         <label>Email : </label>
-            <Input type="email" value={email} placeholder='Digite seu email' onChange={(event) => SetEmail(event.target.value) } required  />
-            <br />
-             <label>Senha :  </label>
-            <Input type={showPass ? 'text' : 'password'} value={password} placeholder='Digite uma senha' onChange={(event) => SetPassWord(event.target.value) } required min={8} />
-             <Button colorScheme='green' type='button' onClick={showPassWord}>Ver senha</Button>
-            <br />
-            <br />
-            <Button colorScheme='blue' type='submit'>Login</Button>
+    <br />
+    <br />
+    <h1 className='makeLogin'>Faça login na sua conta</h1>
+    <br />
+    <form onSubmit={acessLogin} className='form'>
+      <div>
+      <ImputProps
+      label='Email'
+      value={email}
+      onChange={event => SetEmail(event.target.value)}
+      name={email}
+      placeholder='Digite seu email principal'
+      type='text'
+      isRequired 
+      />
+    </div>
+    <div>
+      <ImputProps
+      label='Senha'
+      value={password}
+      onChange={event => SetPassWord(event.target.value)}
+      name={password}
+      type= {showPass ? 'text' : 'password'}
+      placeholder='Digite sua senha'
+      isRequired 
+      />
+    </div>
+     <ButtonProps 
+      name = 'Ver senha'
+      color = 'red'
+      onClick={showPassWord}
+      type='button'
 
+    />
+    <br />
+    <ButtonProps 
+      name = 'fazer login'
+      color = 'blue'
+      type='submit'
+      onClick={() => undefined}
+    
+    />
     </form>
-   {loading ? <PulseLoader color="#1732e0ff" size={25} /> : ' '}
-   <br />
+     
    {errorMenssage && <p style={{color :'red'}}>{errorMenssage}</p>}
     </>
   )

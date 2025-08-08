@@ -1,3 +1,7 @@
+import ImputProps from '../Form/InputProps'
+import ButtonProps from '../Form/ButtonProps'
+import { Textarea } from '@chakra-ui/react'
+
 import { useEffect, useState } from 'react'
 import { PulseLoader } from 'react-spinners'
 import SidebarMenu from '../Struture/SideBar'
@@ -12,13 +16,13 @@ interface UserToken{
 }
 
 function CreateRestaurant() {
-    const [name,SetName] = useState<string>()
-    const [category,SetCategory] = useState<string>()
-    const [description, SetDescription] = useState<string>()
-    const [cep,SetCep] = useState<string>()
-    const [neighborhood, SetNeighborhood] = useState<string>()
-    const [address, SetAdress] = useState<string>()
-    const [number_address, SetNumber_address] = useState<string>()
+    const [name,SetName] = useState<string>('')
+    const [category,SetCategory] = useState<string>('')
+    const [description, SetDescription] = useState<string>('')
+    const [cep,SetCep] = useState<string>('')
+    const [neighborhood, SetNeighborhood] = useState<string>('')
+    const [address, SetAdress] = useState<string>('')
+    const [number_address, SetNumber_address] = useState<string>('')
     
     const [dadosUser, SetDadosUser]= useState<UserToken | null>(null)
     
@@ -76,36 +80,96 @@ function CreateRestaurant() {
       }
 
     }
+     if (loading === true) {
+        return <PulseLoader color="#ff6b6b" />
+    }
   return (
     
     <>
     <SidebarMenu/>
-        <form onSubmit={createRegitreRestaurant} >
-            <h4>{dadosUser?.name} {dadosUser?.surname} adicione dados do restaurante</h4>
+      <h4>{dadosUser?.name} {dadosUser?.surname} adicione dados do restaurante</h4>
             <br />
-            <label>Nome do restaurante : </label>
-            <input type="text" value={name} placeholder='Digite o nome do restaurante' onChange={(event) => SetName(() => event.target.value)}  required/>
+      <form onSubmit={createRegitreRestaurant}>
+        <div>
+              <ImputProps
+              label='Nome Restaurante'
+              value={name}
+              onChange={event => SetName(event.target.value)}
+              name={name}
+              placeholder='Digite o nome do restaurante'
+              type='text'
+              isRequired 
+              />
+            </div>
+            <div>
+              <ImputProps
+              label='Categoria do restaurante '
+              value={category}
+              onChange={event => SetCategory(event.target.value)}
+              name={category}
+              placeholder='Exemplo : pizzaria, humburgueria'
+              type='text'
+              isRequired 
+              />
+            </div>
+            <div>
+              <label >Descricao do restaurante :</label>
+              <Textarea value={description} placeholder='Escreva um pouco sobre o seu estabelecimento' rows={5} cols={35} maxLength={200} onChange={(event) => SetDescription(event.target.value)} />
+            </div>
+            <div>
+              <ImputProps
+              label='Cep'
+              value={cep}
+              onChange={event => SetCep(event.target.value)}
+              name={cep}
+              placeholder='Cep do restaurante'
+              type='text'
+              isRequired 
+              />
+            </div>
+            <div>
+              <ImputProps
+              label='Bairro'
+              value={neighborhood}
+              onChange={event => SetNeighborhood(event.target.value)}
+              name={neighborhood}
+              placeholder='Rua do restaurante'
+              type='text'
+              isRequired 
+              />
+            </div>
+            <div>
+              <ImputProps
+              label='Rua'
+              value={address}
+              onChange={event => SetAdress(event.target.value)}
+              name={address}
+              placeholder='Rua do restaurante'
+              type='text'
+              isRequired 
+              />
+            </div>
+            <div>
+              <ImputProps
+              label='Complemeto/Numero'
+              value={number_address}
+              onChange={event => SetNumber_address(event.target.value)}
+              name={number_address}
+              placeholder='Rua do restaurante'
+              type='text'
+              isRequired 
+              />
+            </div>
             <br />
-            <label>Categoria do restaurante : </label>
-            <input type="text" value={category} placeholder='exemplo : pizzaria, humburgueria' onChange={(event) => SetCategory(() => event.target.value)}  required/>
-            <br /><label>Descricao do restaurante : </label>
-            <textarea
-            value={description} placeholder='Escreva/Fale um pouco sobre o seu estabelecimento' rows={5} cols={35} maxLength={200} onChange={(event) => SetDescription(event.target.value)}
-            />
-            <br /><label>Cep: </label>
-            <input type="text" value={cep} placeholder='Cep do restaurante' onChange={(event) => SetCep(() => event.target.value)}  required/>
-            <br /><label>Bairro: </label>
-            <input type="text" value={neighborhood} placeholder='Cep do restaurante' onChange={(event) => SetNeighborhood(() => event.target.value)}  required/>
-            <br /><label>Rua: </label>
-            <input type="text" value={address} placeholder='Rua do restaurante' onChange={(event) => SetAdress(() => event.target.value)}  required/>
-            <br /><label>Complemeto/Numero: </label>
-            <input type="text" value={number_address} placeholder='complemento/ numero do restaurante' onChange={(event) => SetNumber_address(() => event.target.value)}  required/>
-            <br />
-            <br />
-            <button type='submit'>Cadastra</button>
-        </form>
+              <ButtonProps 
+                   name = 'Realizar o cadastro'
+                   color = 'blue'
+                   type='submit'
+                   onClick={() => undefined}
+                 
+                 />      
+      </form>
         <br />
-        {loading ? <PulseLoader color="#1732e0ff" size={25}/> : ''}
         {mensagemServidor && <p>{mensagemServidor}</p>}
     </>
   )

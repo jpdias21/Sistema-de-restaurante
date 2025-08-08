@@ -40,7 +40,7 @@ function App() {
 
 
         
-          <Route path='/' element={<ProtectedRoute><Home/></ProtectedRoute>}/>
+          <Route path='/' element={<Home/>}/>
           <Route path='/Dashboard' element={<ProtectedRoute><Dashboard/></ProtectedRoute>}/>
           <Route path='/Restaurant' element={<ProtectedRoute><Restaurant/></ProtectedRoute>}/>
           <Route path='/GoOut' element={<ProtectedRoute><GoOut/></ProtectedRoute>}/>

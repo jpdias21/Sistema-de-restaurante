@@ -1,3 +1,6 @@
+import ImputProps from '../Form/InputProps'
+import ButtonProps from '../Form/ButtonProps'
+import '../Form/form.css'
 import { PulseLoader } from 'react-spinners'
 import { useState } from 'react'
 import axios from 'axios'
@@ -24,6 +27,8 @@ function CreateAccount() {
         SetLoading(true)
         if(password != repeatPassword){
             setPasswordIncorrect(true)
+            SetLoading(false)
+            return;
         }
         if(password === repeatPassword){
             setPasswordIncorrect(false)
@@ -43,31 +48,104 @@ function CreateAccount() {
             SetLoading(false)
         }
     }    
+
+    if (loading === true) {
+        return <PulseLoader color="#ff6b6b" />
+    }
     return (
     <>
-        <form onSubmit={registre}>
-            <label>Nome : </label>
-            <input type="text" value={name} placeholder='Digite seu nome' onChange={(event) => SetName(event.target.value) } required  />
+        <form onSubmit={registre} className='form'>
+            <h2 className='makeCreateAccount'>Faça o cadastro</h2>
             <br />
-             <label>Sobre-Nome: </label>
-            <input type="text" value={surname} placeholder='Digite seu sobre nome' onChange={(event) => SetSurname(event.target.value) } required  />
+            <div>
+                  <ImputProps
+                  label='Nome'
+                  value={name}
+                  onChange={event => SetName(event.target.value)}
+                  name={email}
+                  placeholder='Digite seu seu nome'
+                  type='text'
+                  isRequired 
+                  
+                  />
+            </div>
+            <div>
+                  <ImputProps
+                  label='Sobre-nome'
+                  value={surname}
+                  onChange={event => SetSurname(event.target.value)}
+                  name={surname}
+                  placeholder='Digite seu sobre-nome'
+                  type='text'
+                  isRequired 
+                  />
+            </div>
+            <div>
+                  <ImputProps
+                  label='Email'
+                  value={email}
+                  onChange={event => SetEmail(event.target.value)}
+                  name={email}
+                  placeholder='Digite seu email'
+                  type='email'
+                  isRequired 
+                  />
+            </div>
+            <div>
+                  <ImputProps
+                  label='Telefone/ Whatsapp'
+                  value={phone}
+                  onChange={event => SetPhone(event.target.value)}
+                  name={phone}
+                  placeholder='11-90000-0000'
+                  type='text'
+                  maxLength={11}
+                  minLength={11}
+                  isRequired 
+                  />
+            </div>
+            <div>
+                  <ImputProps
+                  label='Senha'
+                  value={password}
+                  onChange={event => SetPassWord(event.target.value)}
+                  name={password}
+                  placeholder='Digite uma senha'
+                  type={showPass ? 'text' : 'password'}
+                  maxLength={30}
+                  minLength={8}
+                  isRequired 
+                  />
+            </div>
+            <div>
+                  <ImputProps
+                  label='Repita a senha'
+                  value={repeatPassword}
+                  onChange={event => setRepeatPassWord(event.target.value)}
+                  name={repeatPassword}
+                  placeholder='Repita a senha'
+                  type={showPass ? 'text' : 'password'}
+                  maxLength={30}
+                  minLength={8}
+                  isRequired 
+                  />
+            </div>
             <br />
-             <label>Email : </label>
-            <input type="email" value={email} placeholder='Digite seu email' onChange={(event) => SetEmail(event.target.value) } required  />
-            <br />
-             <label>Telefone/ Whatsapp: </label>
-            <input type="text" value={phone} placeholder='11-90000-0000' onChange={(event) => SetPhone(event.target.value) } max={11} min={11} pattern='\d{11}' required  />
-            <br />
-             <label>Senha :  </label>
-            <input type={showPass ? 'text' : 'password'} value={password} placeholder='Digite uma senha' onChange={(event) => SetPassWord(event.target.value) } required min={8} />
-            <br />
-             <label>Repita a senha :  </label>
-            <input type={showPass ? 'text' : 'password'} value={repeatPassword} placeholder='Digite uma senha' onChange={(event) => setRepeatPassWord(event.target.value) } required min={8} />
-            <button onClick={showPassWord}>Ver senha</button>
-            <br />
-            <br />
-            <button type='submit'>Cadastrar</button>
+            <ButtonProps
+            name='Ver senha'
+            color='green'
+            onClick={showPassWord}
+            type='button'
+            />
+            <br /><br />
+            <ButtonProps
+            name='Cadastrar'
+            color='blue'
+            onClick={() => undefined}
+            type='submit'
+            />            
         </form>
+
         {passwordIncorrect && <p>Sua senha precisar ser igual</p>}
         {loading && <PulseLoader color="#1732e0ff" size={25} /> }
         {errorMenssage && <p style={{color :'red'}}>{errorMenssage}</p>}

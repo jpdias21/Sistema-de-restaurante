@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-
+import ButtonProps from '../Form/ButtonProps'
 
 function Home() {
     const navigate = useNavigate()
@@ -13,10 +13,20 @@ function Home() {
     }
   return (
     <>
-    <button onClick={cadastrar}>Cadastrar</button>
+    <ButtonProps
+    name='Realizar Cadastrar'
+    color='blue'
+    type='button'
+    onClick={cadastrar}
+    />
     <br />
     <br />
-    <button onClick={login}>Login</button>
+      <ButtonProps
+    name='Faze login'
+    color='blue'
+    type='button'
+    onClick={login}
+    />
     <br />
     <br />
     

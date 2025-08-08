@@ -1,3 +1,4 @@
+import ButtonProps from '../Form/ButtonProps'
 import { useNavigate } from 'react-router-dom'
 import SidebarMenu from './SideBar'
 function GoOut() {
@@ -14,7 +15,12 @@ function GoOut() {
     <>
     <SidebarMenu/>
     <br /><br />
-    <button onClick={goOutAcount}>Sair da conta</button>
+    <ButtonProps 
+          name = 'Sair da conta'
+          color = 'red'
+          type='button'
+          onClick={goOutAcount}
+        />
     </>
   )
 }

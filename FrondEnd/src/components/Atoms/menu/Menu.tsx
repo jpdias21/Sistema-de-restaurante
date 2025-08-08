@@ -1,4 +1,4 @@
-import React from 'react'
+import ButtonProps from '../Form/ButtonProps'
 import SidebarMenu from '../Struture/SideBar'
 import { useNavigate } from 'react-router-dom'
 function Menu() {
@@ -16,12 +16,20 @@ function Menu() {
     <>
     <SidebarMenu/>
     <br />
-    <button onClick={createMenu}>Cadastrar menu do restaurante</button>
-    <br /><br />
-    <button onClick={verMenu}>Ver menu PDF</button>
-    <br /> <br />
-    <button>Ver dados do menu</button>
-    <br />
+    <ButtonProps 
+              name = 'Cadastrar menu do restaurante'
+              color = 'blue'
+              type='button'
+              onClick={createMenu}
+            />
+        <br />
+    <ButtonProps 
+              name = 'Ver Menu'
+              color = 'blue'
+              type='button'
+              onClick={verMenu}
+            />
+        <br />
     <br />
     <button>Atualizar menu</button>
     <br />
