@@ -24,7 +24,8 @@ function DeleteMenu() {
         const token = localStorage.getItem('token')
           const restaurant_id  = localStorage.getItem('restaurantId')
         try {
-            const response = await axios.delete(`http://localhost:3000/deleteMenu/${restaurant_id}`, {
+            const linkRender = 'https://sistema-de-restaurante.onrender.com'
+            const response = await axios.delete(`${linkRender}/deleteMenu/${restaurant_id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

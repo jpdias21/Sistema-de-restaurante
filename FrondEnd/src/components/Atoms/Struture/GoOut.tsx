@@ -9,7 +9,7 @@ function GoOut() {
             localStorage.removeItem('token')
         }
 
-        navigate('/Login')
+        navigate('/')
     }
   return (
     <>

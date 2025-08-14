@@ -44,14 +44,15 @@ function MenuPdf() {
             if (token) {
 
                 try {
-                    const responseRestaurant = await axios.get('http://localhost:3000/readRestaurant', {
+                  const linkRender = 'https://sistema-de-restaurante.onrender.com'
+                    const responseRestaurant = await axios.get(`${linkRender}/readRestaurant`, {
                         headers: {
                             Authorization: `Bearer ${token}`
                         }
                     })
                     SetDadosRestaurant(responseRestaurant.data.read)
 
-                    const responseMenu = await axios.get(`http://localhost:3000/readMenu/${restaurantId}`, {
+                    const responseMenu = await axios.get(`${linkRender}/readMenu/${restaurantId}`, {
                         headers: { Authorization: `Bearer ${token}`}
                     })
                     SetDadosMenu(responseMenu.data.read)

@@ -63,7 +63,8 @@ function CreateRestaurant() {
         console.error("User ID não carregado ainda")
         return}
         try {
-            const response = await axios.post('http://localhost:3000/createRestaurant', {name,category,description,cep,address,number_address,neighborhood,user_id : dadosUser.id})
+            const linkRender = 'https://sistema-de-restaurante.onrender.com'
+            const response = await axios.post(`${linkRender}/createRestaurant`, {name,category,description,cep,address,number_address,neighborhood,user_id : dadosUser.id})
             console.log(response)
 
             const restaurantId = response.data.create.id

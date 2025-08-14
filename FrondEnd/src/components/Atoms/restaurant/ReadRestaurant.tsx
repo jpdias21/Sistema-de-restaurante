@@ -25,7 +25,8 @@ function ReadRestaurant() {
       console.log(token)
       if (token) {
         try {
-          const response = await axios.get('http://localhost:3000/readRestaurant', {
+          const linkRender = 'https://sistema-de-restaurante.onrender.com'
+          const response = await axios.get(`${linkRender}/readRestaurant`, {
             headers: {
               Authorization: `Bearer ${token}`
             }

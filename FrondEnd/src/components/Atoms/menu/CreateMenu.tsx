@@ -60,7 +60,8 @@ function CreateMenu() {
         restaurant_id: restaurantId
       }
       console.log(enviarDados)
-      const response = await axios.post('http://localhost:3000/createMenu', enviarDados)
+      const linkRender = 'https://sistema-de-restaurante.onrender.com'
+      const response = await axios.post(`${linkRender}/createMenu`, enviarDados)
       console.log('deu certo', response.data)
       SetLoading(false)
     } catch (error: any) {

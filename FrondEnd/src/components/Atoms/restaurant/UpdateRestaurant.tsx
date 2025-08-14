@@ -37,7 +37,8 @@ function UpdateRestaurant() {
             console.log(token)
             if (token) {
                 try {
-                    const response = await axios.get('http://localhost:3000/readRestaurant', {
+                     const linkRender = 'https://sistema-de-restaurante.onrender.com'
+                    const response = await axios.get(`${linkRender}/readRestaurant`, {
                         headers: {
                             Authorization: `Bearer ${token}`
                         }
@@ -70,8 +71,9 @@ function UpdateRestaurant() {
         const id = dados?.id
 
         try {
+            const linkRender = 'https://sistema-de-restaurante.onrender.com'
             const token = localStorage.getItem('token')
-            const response = await axios.put(`http://localhost:3000/updateRestaurant/${id}`, {
+            const response = await axios.put(`${linkRender}/${id}`, {
                 name, category, description, cep, neighborhood, address, number_address
             }, {
                 headers: {

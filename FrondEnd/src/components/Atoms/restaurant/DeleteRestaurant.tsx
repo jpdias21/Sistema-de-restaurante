@@ -17,7 +17,8 @@ function DeleteRestaurant() {
             
             if(token){
              try {
-              const response = await axios.get('http://localhost:3000/readRestaurant', {
+                const linkRender = 'https://sistema-de-restaurante.onrender.com'
+              const response = await axios.get(`${linkRender}/readRestaurant`, {
                 headers : {
                     Authorization : `Bearer ${token}`
                 }
@@ -38,8 +39,9 @@ function DeleteRestaurant() {
     const deleteRestaurant =async () => {
         SetLoading(true)
         try {
+            const linkRender = 'https://sistema-de-restaurante.onrender.com'
             const token = localStorage.getItem('token')
-            const response = await axios.delete(`http://localhost:3000/deleteRestaurant`, {
+            const response = await axios.delete(`${linkRender}/deleteRestaurant`, {
                 headers : {
                     Authorization : `Bearer ${token}`
                 }
@@ -70,7 +72,7 @@ function DeleteRestaurant() {
               name = 'DELETAR RESTAURANTE'
               color = 'red'
               type='button'
-              onClick={() => deleteRestaurant}
+              onClick={deleteRestaurant}
             
             />
         <br />

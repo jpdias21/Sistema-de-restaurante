@@ -23,6 +23,7 @@ function CreateAccount() {
     } 
     const [loading, SetLoading] = useState<boolean | null>(null)
 
+    const linkRender = 'https://sistema-de-restaurante.onrender.com'
     const registre = async(event : any) => {
         event.preventDefault()
         SetLoading(true)
@@ -36,7 +37,7 @@ function CreateAccount() {
         }
 
         try {
-           await axios.post('http://localhost:3000/cadastro', {name,surname,email,phone,password})
+           await axios.post(`${linkRender}/cadastro`, {name,surname,email,phone,password})
             console.log('registro realizado com sucesso')
 
             navigate('/Login')
