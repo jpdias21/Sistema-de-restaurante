@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react'
 import { PulseLoader } from 'react-spinners'
 import axios from 'axios'
+import SidebarMenu from '../Struture/SideBar'
+import ButtonProps from '../Form/ButtonProps'
+import { useNavigate } from 'react-router-dom'
+
+import { Card,  CardBody,  Image, Stack, Heading, Text, Divider, Box } from '@chakra-ui/react'
 
 interface DadosRestaurant {
     id: number,
@@ -26,7 +31,10 @@ function MenuPdf() {
     const [dadosMenu, SetDadosMenu] = useState<DadosMenu[]>([])
 
     const [mensagemServidor, SetMensagemServidor] = useState<string | null>(null)
-
+    const navigate = useNavigate()
+    const createMenu = () => {
+        navigate('/CreateMenu')
+    }
     useEffect(() => {
         SetLoading(true)
         async function aboutDados() {
@@ -66,26 +74,68 @@ function MenuPdf() {
     }
     return (
         <>
-            <div>
-                <p>{dadosRestaurant?.name}</p>
-            <h3>Menu:</h3>
-            {dadosMenu.length > 0 ? (<div>
-                {dadosMenu.map((item, index) => (
-                    <div key={index}>
-                        <hr />
-                        <h4>Produto : {item.name}</h4>
-                        <p>Descriçao : {item.description}</p>
-                        <p><strong>Valor : {item.value}</strong></p>
-                    </div>
-                ))}
-            </div>) : (<div>
-                <p>Nenhum item encontrado no menu</p>
-            </div>)}
-            <br />
-            <br />
+     <SidebarMenu/>
+     <br />
+<div>
+     <Box p={6}>
+      <Heading as="h2" size="xl" mb={6} textAlign="center">
+        {dadosRestaurant?.name}
+      </Heading>
+      <br />
+      <Heading as="h3" size="lg" mb={4}>
+        CARTAPIO
+      </Heading>
+      <br />
+      {dadosMenu.length > 0 ? (
+        <Box display="grid" gridTemplateColumns="repeat(auto-fit, minmax(300px, 1fr))" gap={6}>
+          {dadosMenu.map((item, index) => (
+            <Card key={index} maxW="sm">
+              <CardBody>
+                <Image
+                  src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80"
+                  alt={item.name}
+                  borderRadius="lg"
+                  objectFit="cover"
+                  h="200px"
+                  w="100%"
+                />
+                <Stack mt="6" spacing="3">
+                  <Heading size="md">{item.name}</Heading>
+                  <Text color="gray.600">
+                    {item.description}
+                  </Text>
+                  <Text color="green.600" fontSize="2xl" fontWeight="bold">
+                    R$ {item.value}
+                  </Text>
+                </Stack>
+              </CardBody>
+              <Divider />
+            </Card>
+          ))}
+        </Box>
+      ) : (
+        <Card maxW="sm">
+          <CardBody>
+            <Text textAlign="center" color="gray.500">
+              Nenhum item encontrado no menu, faça o cadastro
+            </Text>
+              <br />
+              <ButtonProps 
+                            name = 'Cadastrar menu do restaurante'
+                            color = 'blue'
+                            type='button'
+                            onClick={createMenu}
+                          />
+                      <br />
+          </CardBody>
+        </Card>
+        
+      )}
+    </Box>
+</div>
+      <br />
+       <br />
             {mensagemServidor && <p style={{color : 'red'}}>{mensagemServidor}</p> }
-
-            </div>
         </>
     )
 }

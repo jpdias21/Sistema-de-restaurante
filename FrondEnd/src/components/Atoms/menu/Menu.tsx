@@ -12,6 +12,10 @@ function Menu() {
     const verMenu = () => {
         navigate('/MenuPdf')
     }
+    const deleteMenu = () => {
+        navigate('/DeleteMenu')
+    }
+   
   return (
     <>
     <SidebarMenu/>
@@ -24,17 +28,20 @@ function Menu() {
             />
         <br />
     <ButtonProps 
-              name = 'Ver Menu'
+              name = 'Ver Menu / Cartapio'
               color = 'blue'
               type='button'
               onClick={verMenu}
             />
         <br />
+    <ButtonProps 
+              name = 'Apagar Menu / Cartapio'
+              color = 'red'
+              type='button'
+              onClick={deleteMenu}
+            />
+        <br />
     <br />
-    <button>Atualizar menu</button>
-    <br />
-    <br />
-    <button>Apagar menu</button>
     </>
   )
 }

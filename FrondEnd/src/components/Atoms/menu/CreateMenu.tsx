@@ -3,17 +3,10 @@ import ImputProps from '../Form/InputProps'
 import ButtonProps from '../Form/ButtonProps'
 import { Textarea } from '@chakra-ui/react'
 import { PulseLoader } from 'react-spinners'
-import { NumericFormat } from 'react-number-format'
 import SidebarMenu from '../Struture/SideBar'
 import axios from 'axios'
 
-import {
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
-  NumberIncrementStepper,
-  NumberDecrementStepper, FormControl, FormLabel
-} from '@chakra-ui/react'
+
 
 ///definir campo
 type Campo = {

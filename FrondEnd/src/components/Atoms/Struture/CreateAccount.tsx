@@ -5,6 +5,7 @@ import { PulseLoader } from 'react-spinners'
 import { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import SideBarHome from './SideBarHome'
 
 function CreateAccount() {
     const [name, SetName] = useState<string>('')
@@ -54,8 +55,12 @@ function CreateAccount() {
     }
     return (
     <>
+        <SideBarHome/>
         <form onSubmit={registre} className='form'>
             <h2 className='makeCreateAccount'>Faça o cadastro</h2>
+            <br />
+             <p>E comece a crescer seu negocio para outra patamar</p>
+             <br />
             <br />
             <div>
                   <ImputProps

@@ -26,7 +26,7 @@ function Restaurant() {
     <br />
     <br />
     <ButtonProps 
-          name = 'Cadastrar o restaurante'
+          name = 'Cadastrar restaurante'
           color = 'blue'
           type='button'
           onClick={cadastrarRestaurante}
@@ -48,7 +48,7 @@ function Restaurant() {
     <br />
     <ButtonProps 
           name = 'Apagar restaurante'
-          color = 'blue'
+          color = 'red'
           type='button'
           onClick={apagarRestaurant}
         />

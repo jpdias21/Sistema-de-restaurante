@@ -5,6 +5,7 @@ import { PulseLoader } from 'react-spinners'
 import  { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import SideBarHome from './SideBarHome'
 function Login() {
     const [email, SetEmail] = useState<string>('')
     const [password, SetPassWord] = useState<string>('')
@@ -45,10 +46,13 @@ function Login() {
 
   return (
     <>
-    <br />
+    <SideBarHome/>
     <br />
     <h1 className='makeLogin'>Faça login na sua conta</h1>
     <br />
+    <p>Acesse sua conta para derenciar o seu negocio</p>
+    <br />
+    
     <form onSubmit={acessLogin} className='form'>
       <div>
       <ImputProps
@@ -90,6 +94,10 @@ function Login() {
     </form>
      
    {errorMenssage && <p style={{color :'red'}}>{errorMenssage}</p>}
+   <br />
+   <br />
+   
+   <div></div>
     </>
   )
 }

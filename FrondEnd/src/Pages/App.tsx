@@ -5,6 +5,8 @@ import CreateAccount from '../components/Atoms/Struture/CreateAccount'
 import Login from '../components/Atoms/Struture/Login'
 import Dashboard from '../components/Atoms/Struture/Dashboard'
 import ProtectedRoute from '../components/Atoms/Struture/ProtectedRoute'
+
+
 /// restaurant
 import Restaurant from '../components/Atoms/restaurant/Restaurant'
 import CreateRestaurant from '../components/Atoms/restaurant/CreateRestaurant'
@@ -16,6 +18,7 @@ import DeleteRestaurant from '../components/Atoms/restaurant/DeleteRestaurant'
 import Menu from '../components/Atoms/menu/Menu'
 import MenuPdf from '../components/Atoms/menu/MenuPdf'
 import CreateMenu from '../components/Atoms/menu/CreateMenu'
+import DeleteMenu from '../components/Atoms/menu/DeleteMenu'
 
 
 //About
@@ -37,6 +40,7 @@ function App() {
           <Route path='/Menu' element={<Menu/>}/>
           <Route path='/CreateMenu' element={<CreateMenu/>}/>
           <Route path='/MenuPdf' element={<MenuPdf/>}/>
+          <Route path='/DeleteMenu' element={<DeleteMenu/>}/>
 
 
         
@@ -55,6 +59,7 @@ function App() {
           <Route path='/Menu' element={<ProtectedRoute><Menu/></ProtectedRoute>}/>
           <Route path='/CreateMenu' element={<ProtectedRoute><CreateMenu/></ProtectedRoute>}/>
           <Route path='/MenuPdf' element={<ProtectedRoute><MenuPdf/></ProtectedRoute>}/>
+          <Route path='/DeleteMenu' element={<ProtectedRoute><DeleteMenu/></ProtectedRoute>}/>
 
       </Routes>
     </BrowserRouter>

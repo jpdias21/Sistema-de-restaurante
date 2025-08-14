@@ -53,7 +53,7 @@ function ReadRestaurant() {
       <br />
       <Card>
   <CardHeader>
-    <Heading size='md'>Dados do seu restaurante</Heading>
+    <Heading size='md' >Dados do seu restaurante</Heading>
   </CardHeader>
 
   <CardBody>

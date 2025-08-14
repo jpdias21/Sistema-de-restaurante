@@ -74,7 +74,9 @@ function DeleteRestaurant() {
             
             />
         <br />
+        <br />
         <br /></>}
+        <br />
         {mensagem && <h4 style={{color :'red'}}>{mensagem}</h4>}
     </>
   )
